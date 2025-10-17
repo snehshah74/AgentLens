@@ -11,7 +11,7 @@ from pydantic import BaseModel
 import uvicorn
 
 from agents.log_agent import LogIngestionAgent
-from agents.analysis_agent_enhanced import SecurityAnalysisAgent
+from agents.analysis_agent_simple import SecurityAnalysisAgent
 from agents.alert_agent import AlertAgent
 
 # Configure logging
