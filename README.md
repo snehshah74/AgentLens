@@ -6,7 +6,6 @@
 ![Python](https://img.shields.io/badge/python-3.11+-green)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-teal)
 ![Next.js](https://img.shields.io/badge/Next.js-15-black)
-![License](https://img.shields.io/badge/license-MIT-purple)
 
 **A production-ready observability platform for AI systems with real-time threat detection, security analysis, and intelligent alerting powered by LangChain and LLMs.**
 
@@ -66,6 +65,9 @@ cd ai-observability
 
 ### **2. Setup Backend**
 ```bash
+# Navigate to backend directory
+cd backend
+
 # Install dependencies
 pip install -r requirements.txt
 
@@ -77,8 +79,13 @@ Backend runs on **http://localhost:8000**
 
 ### **3. Setup Frontend** (New Terminal)
 ```bash
+# Navigate to frontend directory
 cd frontend
+
+# Install dependencies
 npm install
+
+# Start frontend server
 npm run dev
 ```
 
@@ -291,28 +298,34 @@ curl -X POST http://localhost:8000/api/submit-log \
 
 ### **Project Structure**
 ```
-├── agents/                    # Three specialized agents
-│   ├── log_agent.py          # Log ingestion
-│   ├── analysis_agent_enhanced.py  # Security analysis
-│   └── alert_agent.py        # Alert management
-├── app.py                     # FastAPI backend
-├── database.py                # Database layer (ready to use)
+├── backend/                    # Python FastAPI backend
+│   ├── app.py                 # Main FastAPI application
+│   ├── database.py            # Database layer
+│   ├── requirements.txt       # Dependencies
+│   └── README.md             # Backend documentation
+├── agents/                     # AI Agents (shared/independent)
+│   ├── log_agent.py           # Log ingestion
+│   ├── analysis_agent_simple.py  # Security analysis
+│   └── alert_agent.py         # Alert management
 ├── frontend/                  # Next.js dashboard
 │   ├── src/app/              # Pages and routes
-│   └── src/components/       # React components
+│   ├── src/components/        # React components
+│   ├── src/contexts/          # React contexts
+│   ├── package.json           # Dependencies
+│   └── README.md             # Frontend documentation
 ├── examples/                  # Integration examples
-└── docs/                      # Comprehensive documentation
+└── README.md                  # Main documentation
 ```
 
 ### **Run Tests**
 ```bash
 # Backend tests
-python test_system.py
-python test_ai_observability.py
+cd backend
+python -c "import app; print('✅ Backend imports successfully')"
 
 # Frontend tests
 cd frontend
-npm test
+npm run build
 ```
 
 ### **Run Integration Example**
@@ -382,9 +395,6 @@ Contributions are welcome! Here's how:
 
 ---
 
-## 📄 **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 

@@ -1,176 +1,133 @@
-# AI Observability Dashboard
+# Frontend - AI Observability Dashboard
 
-A modern, minimal observability dashboard built with Next.js for monitoring agentic AI systems. This dashboard provides real-time log viewing and security alert management with a clean, responsive interface.
+## Overview
+Modern Next.js 15 dashboard for real-time monitoring and management of AI observability data.
 
-## Features
+## Quick Start
 
-- **Real-time Log Viewer**: View and filter logs with search functionality
-- **Security Alert Management**: Monitor and acknowledge security alerts
-- **Backend Integration**: Connects to FastAPI backend via REST API
-- **Demo Mode**: Shows sample data when backend is unavailable
-- **Responsive Design**: Clean, modern UI built with Tailwind CSS
-- **Auto-refresh**: Automatic data updates every 5-10 seconds
-
-## Technology Stack
-
-- **Frontend**: Next.js 15 with App Router
-- **Styling**: Tailwind CSS
-- **Language**: TypeScript
-- **Backend Integration**: REST API with fetch
-- **Icons**: Heroicons (SVG)
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-- Python FastAPI backend (optional - demo mode available)
-
-### Installation
-
-1. Navigate to the dashboard directory:
+### 1. Install Dependencies
 ```bash
-cd observability-dashboard
-```
-
-2. Install dependencies:
-```bash
+cd frontend
 npm install
 ```
 
-3. Start the development server:
+### 2. Start Development Server
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+The frontend will start on `http://localhost:3000`
 
-### Backend Integration
+## Features
 
-The dashboard automatically detects if the FastAPI backend is running on `http://localhost:8000`. If the backend is available, it will:
+### Dashboard Pages
+- **Home** (`/`) - Landing page with platform overview
+- **Dashboard** (`/dashboard`) - Main monitoring interface
+- **Services** (`/services`) - Service management
+- **Analytics** (`/analytics`) - Data analytics and insights
+- **Alerts** (`/alerts`) - Alert management
 
-- Display real-time logs and alerts
-- Show accurate statistics
-- Enable full functionality
+### Key Components
+- **LogSubmission** - Manual log submission form
+- **LogViewer** - Real-time log display
+- **AlertList** - Alert management interface
+- **Navigation** - Responsive navigation bar
+- **ThemeContext** - Dark/light theme support
 
-If the backend is not available, the dashboard will:
+## Technology Stack
 
-- Show demo data for logs and alerts
-- Display a "Demo Mode" notification
-- Still provide full UI functionality
-
-## Project Structure
-
-```
-observability-dashboard/
-├── src/
-│   ├── app/
-│   │   ├── globals.css          # Global styles with Tailwind
-│   │   ├── layout.tsx           # App layout
-│   │   └── page.tsx             # Main dashboard page
-│   └── components/
-│       ├── LogViewer.js         # Log viewing component
-│       └── AlertList.js         # Alert management component
-├── public/                      # Static assets
-├── package.json                 # Dependencies
-└── README.md                    # This file
-```
-
-## Components
-
-### LogViewer Component
-- Displays logs in a responsive table format
-- Supports filtering by level (ERROR, WARNING, INFO, DEBUG)
-- Includes search functionality
-- Auto-refreshes every 5 seconds
-- Shows metadata in expandable details
-
-### AlertList Component
-- Lists security alerts with severity indicators
-- Supports filtering by severity and status
-- Allows alert acknowledgment
-- Auto-refreshes every 10 seconds
-- Shows alert metadata and timestamps
-
-### Main Dashboard
-- Overview statistics (Total Logs, Total Alerts, Critical Alerts)
-- Backend status indicator
-- Responsive grid layout
-- Demo mode notifications
-
-## API Integration
-
-The dashboard integrates with the FastAPI backend through these endpoints:
-
-- `GET /health` - Backend health check
-- `GET /api/logs` - Fetch logs with filtering
-- `GET /api/logs/stats` - Log statistics
-- `GET /api/alerts` - Fetch alerts with filtering
-- `GET /api/alerts/stats` - Alert statistics
-- `POST /api/alerts/{id}/acknowledge` - Acknowledge alerts
-
-## Styling
-
-The dashboard uses Tailwind CSS with custom components:
-
-- **Dashboard Cards**: Consistent card styling with hover effects
-- **Status Indicators**: Animated status dots
-- **Responsive Tables**: Mobile-friendly table layouts
-- **Custom Scrollbars**: Styled scrollbars for better UX
-- **Loading States**: Spinner animations for loading states
-
-## Demo Data
-
-When the backend is unavailable, the dashboard shows realistic demo data:
-
-### Demo Logs
-- User authentication events
-- Rate limiting warnings
-- Database connection errors
-- API request logs
-- System monitoring alerts
-
-### Demo Alerts
-- Prompt injection attempts (Critical)
-- PII leakage detection (High)
-- Authentication failures (Warning)
-- System overload alerts (Error)
-- Suspicious pattern detection (Warning)
+- **Next.js 15** - React framework with App Router
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Utility-first styling
+- **Turbopack** - Fast bundling
 
 ## Development
 
 ### Available Scripts
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+### Project Structure
+```
+frontend/
+├── src/
+│   ├── app/                 # Next.js App Router pages
+│   │   ├── page.tsx        # Home page
+│   │   ├── dashboard/      # Dashboard pages
+│   │   ├── analytics/      # Analytics pages
+│   │   └── services/       # Services pages
+│   ├── components/         # Reusable components
+│   │   ├── Navigation.js   # Navigation bar
+│   │   ├── LogSubmission.js # Log form
+│   │   ├── LogViewer.js    # Log display
+│   │   └── AlertList.js    # Alert management
+│   └── contexts/           # React contexts
+│       └── ThemeContext.js # Theme management
+├── public/                 # Static assets
+├── package.json           # Dependencies
+└── next.config.ts         # Next.js configuration
+```
 
-### Customization
+## API Integration
 
-The dashboard is easily customizable:
+The frontend communicates with the backend API:
+- **Base URL**: `http://localhost:8000`
+- **Endpoints**: All backend API endpoints
+- **CORS**: Configured for cross-origin requests
 
-1. **Colors**: Modify Tailwind color classes in components
-2. **Layout**: Adjust grid layouts in `page.tsx`
-3. **Components**: Extend or modify existing components
-4. **API**: Update fetch URLs to point to different backends
+### Example API Calls
+```javascript
+// Submit log
+const response = await fetch('http://localhost:8000/api/submit-log', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    message: 'User login',
+    level: 'INFO',
+    source: 'auth-service'
+  })
+});
 
-## Browser Support
+// Get logs
+const logs = await fetch('http://localhost:8000/api/logs');
+```
 
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
+## Styling
 
-## Contributing
+### Design System
+- **Dark Theme** - Primary theme with dark backgrounds
+- **Green Accents** - Primary color for highlights
+- **Responsive** - Mobile-first design
+- **Modern UI** - Clean, professional interface
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+### Tailwind Classes
+- `dashboard-card` - Card components
+- `btn-primary` - Primary buttons
+- `btn-secondary` - Secondary buttons
+- `form-input` - Form inputs
+- `alert-badge` - Alert status badges
 
-## License
+## Deployment
 
-This project is open source and available under the MIT License.
+The frontend is ready for deployment on:
+- **Vercel** (recommended for Next.js)
+- **Netlify**
+- **Railway**
+- **Docker containers**
+
+### Environment Variables
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:8000  # Backend API URL
+```
+
+## Performance
+
+- **Turbopack** - Fast development builds
+- **Image Optimization** - Next.js automatic optimization
+- **Code Splitting** - Automatic route-based splitting
+- **Static Generation** - Pre-rendered pages where possible
