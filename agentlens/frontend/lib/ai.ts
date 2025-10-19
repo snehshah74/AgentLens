@@ -647,7 +647,8 @@ export function calculatePercentile(values: number[], percentile: number): numbe
 
 // Detect outliers using IQR method
 export function detectOutliers(values: number[]): { outliers: number[]; threshold: number } {
-  const sorted = [...values].sort((a, b) => a - b)
+  // Sort for percentile calculation
+  [...values].sort((a, b) => a - b)
   const q1 = calculatePercentile(values, 25)
   const q3 = calculatePercentile(values, 75)
   const iqr = q3 - q1

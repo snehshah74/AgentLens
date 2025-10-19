@@ -1,0 +1,35 @@
+name: 🚀 Deploy with Approval
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production  # Requires manual approval
+    
+    steps:
+      - name: 📦 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: ⏳ Waiting for approval...
+        run: |
+          echo "🔔 Deployment requires approval!"
+          echo "✅ Check GitHub Actions for approval button"
+          echo "📊 Changes in this deployment:"
+          git log -1 --pretty=format:"%h - %s (%an)"
+      
+      - name: 🎉 Deployment Approved
+        run: |
+          echo "✅ Deployment approved by ${{ github.actor }}"
+          echo "🚀 Vercel will auto-deploy from GitHub"
+          echo "📍 Check your Vercel dashboard for progress"
+      
+      - name: 📨 Notify Success
+        if: success()
+        run: |
+          echo "✅ Production deployment initiated successfully!"
+          echo "🔗 Visit: https://agentlens.vercel.app"
+

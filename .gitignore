@@ -1,3 +1,21 @@
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env*.local
+.env.production
+.env.development
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
 # Python
 __pycache__/
 *.py[cod]
@@ -8,38 +26,32 @@ venv/
 env/
 ENV/
 
-# Node
-node_modules/
-.next/
-out/
-build/
-dist/
+# Testing
+coverage/
+.nyc_output/
 
-# Environment
-.env
-.env.local
-.env*.local
+# Misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-.DS_Store
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
 
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
 
-# Testing
-coverage/
-.nyc_output/
-
-# Misc
+# Vercel
 .vercel
+
+# Turbo
 .turbo

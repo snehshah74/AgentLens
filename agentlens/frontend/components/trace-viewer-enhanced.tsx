@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { ChevronDown, ChevronRight, Copy, Check, Zap, Wrench, Database, AlertTriangle, TrendingUp, Clock, DollarSign, Sparkles, Send, Loader2, ChevronUp, MessageSquare, Target, Lightbulb } from 'lucide-react'
+import { ChevronDown, AlertTriangle, Clock, DollarSign, Sparkles, Send, Loader2, ChevronUp, MessageSquare, Target, Lightbulb } from 'lucide-react'
 import type { TraceWithAgent } from '@/types'
 
 // Import everything from the original trace-viewer

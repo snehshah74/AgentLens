@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { supabase } from '@/lib/supabase'
 import { LineChart, Line, AreaChart, Area, ResponsiveContainer, Tooltip } from 'recharts'
 import { Activity, Zap, DollarSign, TrendingUp, TrendingDown, Radio } from 'lucide-react'
@@ -17,7 +16,6 @@ function useCountUp(end: number, duration: number = 1000) {
 
   useEffect(() => {
     const startTime = Date.now()
-    const endTime = startTime + duration
 
     const timer = setInterval(() => {
       const now = Date.now()

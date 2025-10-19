@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "cd agentlens/frontend && npm install && npm run build",
+  "devCommand": "cd agentlens/frontend && npm run dev",
+  "installCommand": "cd agentlens/frontend && npm install",
+  "framework": "nextjs",
+  "outputDirectory": "agentlens/frontend/.next",
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "develop": true
+    }
+  },
+  "github": {
+    "silent": false,
+    "autoAlias": true
+  },
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PUBLIC_APP_URL": "https://agentlens.vercel.app"
+  }
+}
+
