@@ -1,7 +1,0 @@
-# Minimal requirements for AI Observability Platform
-fastapi
-uvicorn[standard]
-pydantic
-httpx
-asyncio-throttle
-structlog
